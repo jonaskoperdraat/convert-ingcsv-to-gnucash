@@ -6,7 +6,7 @@
 
     <groupId>nl.jonaskoperdraat</groupId>
     <artifactId>convert-ingcsv-to-gnucash</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.4</version>
 
     <packaging>jar</packaging>
 
