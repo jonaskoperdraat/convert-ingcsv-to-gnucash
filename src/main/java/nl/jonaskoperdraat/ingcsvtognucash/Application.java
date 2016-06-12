@@ -84,25 +84,25 @@ public class Application {
      * @return a String[] containing the new line.
      */
     private String[] processLine(String[] line) {
-        String[] newLine = new String[8];
+        String[] newLine = new String[6];
 
         // Check if this is the first 'header' line.
         if ("Datum".equals(line[0])) {
             newLine[0] = "Datum";
-            newLine[1] = "Omschrijving";
-            newLine[2] = "Toelichting";
-            newLine[3] = "Rekening";
-            newLine[4] = "Storting";
-            newLine[5] = "Opname";
+            newLine[1] = "Rekening";
+            newLine[2] = "Storting";
+            newLine[3] = "Opname";
+            newLine[4] = "Omschrijving";
+            newLine[5] = "Toelichting";
         } else {
             newLine[0] = line[0];
-            newLine[1] = line[1];
-            newLine[2] = line[8];
-            newLine[3] = line[2];
+            newLine[1] = line[2];
             // Storting
-            newLine[4] = "Bij".equals(line[5]) ? line[6] : "0";
+            newLine[2] = "Bij".equals(line[5]) ? line[6] : "0";
             // Opname
-            newLine[5] = "Af".equals(line[5]) ? line[6] : "0";
+            newLine[3] = "Af".equals(line[5]) ? line[6] : "0";
+            newLine[4] = line[1];
+            newLine[5] = line[8];
         }
 
         return newLine;
