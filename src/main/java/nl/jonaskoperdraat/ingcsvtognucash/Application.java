@@ -6,10 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-/**
- * Created by jonas on 5-4-2016.
- */
 public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
@@ -45,8 +47,18 @@ public class Application {
 
         LOG.debug("Parsing file {} and writing new file to {}", infile, outfile);
 
+        // Replace superfluous double quotes (") whith a single quote (') as a double quote is used as a delimiter.
+        Path path = Paths.get(infile);
+        Charset charset = StandardCharsets.UTF_8;
+
+        String content = new String(Files.readAllBytes(path), charset);
+        String altContent = content.replaceAll("([^$,\n])\"+([^^,\r])", "$1'$2");
+
+
+        Reader inputFileReader = new BufferedReader(new StringReader(altContent));
+
         // Create reader
-        CSVReader reader = new CSVReader(new FileReader(args[0]), ',');
+        CSVReader reader = new CSVReader(inputFileReader, ',');
 
         // Create writer
         CSVWriter writer = new CSVWriter(new FileWriter(outfile), ',', '"', "\n");
