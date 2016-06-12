@@ -89,24 +89,20 @@ public class Application {
         // Check if this is the first 'header' line.
         if ("Datum".equals(line[0])) {
             newLine[0] = "Datum";
-            newLine[1] = "Nr";
-            newLine[2] = "Omschrijving";
-            newLine[3] = "Toelichting";
-            newLine[4] = "Rekening";
-            newLine[5] = "Storting";
-            newLine[6] = "Opname";
-            newLine[7] = "Saldo";
+            newLine[1] = "Omschrijving";
+            newLine[2] = "Toelichting";
+            newLine[3] = "Rekening";
+            newLine[4] = "Storting";
+            newLine[5] = "Opname";
         } else {
             newLine[0] = line[0];
-            newLine[1] = "";
-            newLine[2] = line[1];
-            newLine[3] = line[8];
-            newLine[4] = line[2];
+            newLine[1] = line[1];
+            newLine[2] = line[8];
+            newLine[3] = line[2];
             // Storting
-            newLine[5] = "Bij".equals(line[5]) ? line[6] : "0";
+            newLine[4] = "Bij".equals(line[5]) ? line[6] : "0";
             // Opname
-            newLine[6] = "Af".equals(line[5]) ? line[6] : "0";
-            newLine[7] = "";
+            newLine[5] = "Af".equals(line[5]) ? line[6] : "0";
         }
 
         return newLine;
